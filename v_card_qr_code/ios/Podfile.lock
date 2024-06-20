@@ -1,0 +1,60 @@
+PODS:
+  - contacts_service (0.2.2):
+    - Flutter
+  - Flutter (1.0.0)
+  - flutter_contacts (0.0.1):
+    - Flutter
+  - flutter_native_splash (0.0.1):
+    - Flutter
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - permission_handler_apple (9.1.1):
+    - Flutter
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - url_launcher_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - contacts_service (from `.symlinks/plugins/contacts_service/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_contacts (from `.symlinks/plugins/flutter_contacts/ios`)
+  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+
+EXTERNAL SOURCES:
+  contacts_service:
+    :path: ".symlinks/plugins/contacts_service/ios"
+  Flutter:
+    :path: Flutter
+  flutter_contacts:
+    :path: ".symlinks/plugins/flutter_contacts/ios"
+  flutter_native_splash:
+    :path: ".symlinks/plugins/flutter_native_splash/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+
+SPEC CHECKSUMS:
+  contacts_service: 849e1f84281804c8bfbec1b4c3eedcb23c5d3eca
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_contacts: edb1c5ce76aa433e20e6cb14c615f4c0b66e0983
+  flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.15.2

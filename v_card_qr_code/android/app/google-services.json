@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208055961982",
+    "project_id": "v-card-qr-code",
+    "storage_bucket": "v-card-qr-code.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208055961982:android:f2344a16662bfb9ddb8b2f",
+        "android_client_info": {
+          "package_name": "com.v_card_qr_code"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuVBKNk7CpTxbkx24yu8fhU2qlfBIfsV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
