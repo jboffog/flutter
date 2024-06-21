@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:v_card_qr_code/helpers/color.dart';
 import 'package:v_card_qr_code/screens/virtual_card/virtual_card_screen.dart';
 import 'package:v_card_qr_code/screens/widgets/app_bar.dart';
@@ -77,20 +78,48 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
     return PopScope(
         canPop: false,
         child: AppScaffold(
-            appBar: AppAppBar(
-                title: 'Virtual Card Profile',
-                bottom: TabBar(
+          appBar: const AppAppBar(
+            title: 'Virtual Card Profile',
+          ),
+          body: Column(
+            children: [
+              // Container(
+              //   color: AppColors().secundaryColor,
+              //   child: Padding(
+              //     padding: const EdgeInsets.only(left: 58.0, right: 58.0, top: 0),
+              //     child: Image.asset('assets/images/app_footer.png', fit: BoxFit.contain),
+              //   ),
+              // ),
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [AppColors().secundaryColor, AppColors().secundaryColor])),
+                child: TabBar(
                     controller: _tabController,
                     tabs: tabs,
                     labelColor: Colors.white,
                     indicatorColor: Colors.white,
-                    unselectedLabelColor: Colors.white54)),
-            body: TabBarView(controller: _tabController, children: [
-              VirtualCardScreen(onNewCard: onNewCard, card: currentCard),
-              SavedCardsScreen(onCardSelected: onCardSelected)
-            ]),
-            bottomNavigationBar:
-                // _tabController.index == 0 ? Image.asset('assets/images/app_footer.jpg', fit: BoxFit.cover) : null,
-                Image.asset('assets/images/app_footer.png', fit: BoxFit.cover)));
+                    unselectedLabelColor: Colors.white54),
+              ),
+              Expanded(
+                child: TabBarView(controller: _tabController, children: [
+                  VirtualCardScreen(onNewCard: onNewCard, card: currentCard),
+                  SavedCardsScreen(onCardSelected: onCardSelected)
+                ]),
+              ),
+            ],
+          ),
+          bottomNavigationBar:
+              // _tabController.index == 0 ? Image.asset('assets/images/app_footer.jpg', fit: BoxFit.cover) : null,
+              Container(
+            color: AppColors().secundaryColor,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 58.0, right: 58.0, top: 0),
+              child: Image.asset('assets/images/app_footer.png', fit: BoxFit.contain),
+            ),
+          ),
+        ));
   }
 }
