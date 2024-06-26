@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:v_card_qr_code/helpers/color.dart';
 import 'package:v_card_qr_code/screens/widgets/app_bar.dart';
 
 class AppScaffold extends StatefulWidget {
@@ -20,7 +21,7 @@ class _AppScaffoldState extends State<AppScaffold> {
   Scaffold build(BuildContext context) {
     return Scaffold(
         key: widget.scaffoldKey,
-        backgroundColor: widget.backgroundColor ?? Colors.grey[200],
+        backgroundColor: widget.backgroundColor ?? AppColors().bgColor,
         appBar: widget.appBar,
         body: widget.body,
         bottomNavigationBar: widget.bottomNavigationBar);
