@@ -161,7 +161,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
 
   _getTabBarIndex(BuildContext context) {
     try {
-      return DefaultTabController.of(context)!.index;
+      return DefaultTabController.of(context).index;
     } catch (e) {
       return DEFAULT_INDEX;
     }

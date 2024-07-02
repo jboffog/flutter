@@ -25,7 +25,7 @@ class _HandleTodoDialogState extends State<HandleTodoDialog> {
 
   @override
   void initState() {
-    _controller = TextEditingController(text: widget.todo != null ? widget.todo!.title : null);
+    _controller = TextEditingController(text: widget.todo?.title);
     super.initState();
   }
 
