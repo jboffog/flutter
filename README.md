@@ -1,1 +1,1 @@
-Projetos pessoais/estudo.
+Projetos pessoais/estudos.
