@@ -8,3 +8,4 @@ ________________________________________________________<br/>
 <b>v_card_qr_code</b><br/>
 Aplicação é capaz de gerar um qr code para compartilhar um virtual card gerado a partir de dados, podendo ser inputados via apliação ou colhidos de um contato da agenda do dispositivo.<br/>
 Contém gestão de estado customizada (mobx) e persistencia em cache (hive).<br/>
+________________________________________________________<br/>
