@@ -8,7 +8,7 @@ extension TodosVisibilityExtensions on TodosVisibility {
       case TodosVisibility.pending:
         return "Pending";
       case TodosVisibility.done:
-        return "done";
+        return "Done";
       default:
         return "undefined";
     }

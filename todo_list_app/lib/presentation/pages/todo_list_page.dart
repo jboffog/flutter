@@ -119,19 +119,16 @@ class _TodoListScreenState extends State<TodoListScreen> {
         child: Column(mainAxisSize: MainAxisSize.min, children: [
       Padding(
           padding: AppDimens.DEFAULT_BOTTOM_NAVIGATOR_BAR_PADDING,
-          child: Container(
-              decoration: BoxDecoration(color: AppColors.LIGHT_GRAY, borderRadius: AppDimens.DEFAULT_BORDER_RADIUS),
-              child: TabBar(
-                  indicator: BoxDecoration(
-                      color: AppColors.LIGHT_PRIMARY_COLOR, borderRadius: AppDimens.DEFAULT_BORDER_RADIUS),
-                  labelColor: AppColors.WHITE,
-                  unselectedLabelColor: AppColors.BLACK,
-                  onTap: (value) => setState(() {}),
-                  tabs: [
-                    Tab(text: TodosVisibility.all.asString),
-                    Tab(text: TodosVisibility.pending.asString),
-                    Tab(text: TodosVisibility.done.asString)
-                  ]))),
+          child: TabBar(
+              dividerHeight: 0,
+              labelColor: AppColors.APP_PRIMARY_SWATCH,
+              unselectedLabelColor: AppColors.BLACK,
+              onTap: (value) => setState(() {}),
+              tabs: [
+                _buildTabItem(Tab(text: TodosVisibility.all.asString)),
+                _buildTabItem(Tab(text: TodosVisibility.pending.asString)),
+                _buildTabItem(Tab(text: TodosVisibility.done.asString))
+              ])),
       Padding(
           padding: Platform.isAndroid
               ? AppDimens.DEFAULT_MAIN_ACTION_BUTTON_PADDING_ANDROID
@@ -152,6 +149,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
               : FloatingActionButton(
                   onPressed: () => _showToast(AppStrings.DELETE_TODO_INFO_TEXT), child: const Icon(Icons.info)))
     ]));
+  }
+
+  Padding _buildTabItem(Widget tab) {
+    return Padding(padding: AppDimens.DEFAULT_PAGE_PADDING, child: tab);
   }
 
   Future<void> _applyFadeAnimation(int id) async {
