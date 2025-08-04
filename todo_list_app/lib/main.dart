@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:todo_list_app/presentation/pages/todo_list_page.dart';
+import 'package:todo_list_app/presentation/pages/list_todo_page.dart';
 import 'package:todo_list_app/presentation/utils/colors.dart';
 import 'package:todo_list_app/presentation/utils/strings.dart';
 import 'package:todo_list_app/todo_module.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Future.delayed(const Duration(seconds: 2))
+  Future.delayed(const Duration(seconds: 1))
       .then((value) => runApp(ModularApp(module: TodoModule(), child: const MyApp())));
 }
 

@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:todo_list_app/domain/entities/todo_entity.dart';
-import 'package:todo_list_app/domain/enums/todos_visibility_enum.dart';
+import 'package:todo_list_app/domain/enums/todos_nomenclature_enum.dart';
+import 'package:todo_list_app/presentation/pages/all_todo.dart';
 import 'package:todo_list_app/presentation/pages/handle_todo_dialog.dart';
 import 'package:todo_list_app/presentation/pages/widgets/list_item.dart';
 import 'package:todo_list_app/presentation/stores/todo_store.dart';
@@ -57,22 +58,45 @@ class _TodoListScreenState extends State<TodoListScreen> {
               Observer(builder: (context) {
                 return Expanded(
                     child: TabBarView(physics: const NeverScrollableScrollPhysics(), children: [
-                  _handleTodosVisibility(context, store.todoList.toList()),
-                  _handleTodosVisibility(context, store.todoList.where((element) => !element.isDone).toList(),
-                      visibility: TodosVisibility.pending),
-                  _handleTodosVisibility(context, store.todoList.where((element) => element.isDone).toList(),
-                      visibility: TodosVisibility.done)
+                  AllTodosPage(todoNomenclature: TodosNomenclature.all, store: store),
+                  _handleTodosVisibility(
+                      context: context,
+                      list: store.todoList.where((element) => !element.isDone).toList(),
+                      visibility: TodosNomenclature.pending),
+                  _handleTodosVisibility(
+                      context: context,
+                      list: store.todoList.where((element) => element.isDone).toList(),
+                      visibility: TodosNomenclature.done)
                 ]));
               })
             ])));
   }
 
-  Widget _handleTodosVisibility(BuildContext context, List<TodoEntity> list, {TodosVisibility? visibility}) {
+  Widget _handleTodosVisibility({
+    required BuildContext context,
+    required List<TodoEntity> list,
+    required TodosNomenclature visibility,
+  }) {
     if (list.isNotEmpty) {
       return ListView.builder(itemCount: list.length, itemBuilder: (_, index) => _buildListItem(list[index], context));
     }
 
-    return _handleMessageVisiblity(visibility, list);
+    return _handleMessageVisiblity(visibility: visibility, list: list);
+  }
+
+  Widget _handleMessageVisiblity({TodosNomenclature? visibility, required List<TodoEntity> list}) {
+    if (visibility == TodosNomenclature.done && list.isEmpty) {
+      return _buildMessageWidget(AppStrings.ALL_PENDING_TEXT);
+    } else if (visibility == TodosNomenclature.pending && list.isEmpty) {
+      return _buildMessageWidget(AppStrings.ALL_DONE_TEXT);
+    } else {
+      return const SizedBox();
+    }
+  }
+
+  Widget _buildMessageWidget(String message) {
+    return Row(
+        children: [Expanded(child: Text(message, textAlign: TextAlign.center, style: const TextStyle(fontSize: 16)))]);
   }
 
   Widget _buildListItem(TodoEntity todo, BuildContext context) {
@@ -97,23 +121,6 @@ class _TodoListScreenState extends State<TodoListScreen> {
     );
   }
 
-  Widget _buildMessageWidget(String message) {
-    return Row(
-        children: [Expanded(child: Text(message, textAlign: TextAlign.center, style: const TextStyle(fontSize: 16)))]);
-  }
-
-  Widget _handleMessageVisiblity(TodosVisibility? visibility, List<TodoEntity> list) {
-    if (visibility == null && list.isEmpty) {
-      return _buildMessageWidget(AppStrings.NOTHING_TO_SHOW_TEXT);
-    } else if (visibility == TodosVisibility.done && list.isEmpty) {
-      return _buildMessageWidget(AppStrings.ALL_PENDING_TEXT);
-    } else if (visibility == TodosVisibility.pending && list.isEmpty) {
-      return _buildMessageWidget(AppStrings.ALL_DONE_TEXT);
-    } else {
-      return const SizedBox();
-    }
-  }
-
   Widget _buildBottomNavigationBar(BuildContext context) {
     return SafeArea(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -125,9 +132,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
               unselectedLabelColor: AppColors.BLACK,
               onTap: (value) => setState(() {}),
               tabs: [
-                _buildTabItem(Tab(text: TodosVisibility.all.asString)),
-                _buildTabItem(Tab(text: TodosVisibility.pending.asString)),
-                _buildTabItem(Tab(text: TodosVisibility.done.asString))
+                _buildTabItem(Tab(text: TodosNomenclature.all.asString)),
+                _buildTabItem(Tab(text: TodosNomenclature.pending.asString)),
+                _buildTabItem(Tab(text: TodosNomenclature.done.asString))
               ])),
       Padding(
           padding: Platform.isAndroid
