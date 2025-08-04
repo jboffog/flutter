@@ -6,6 +6,7 @@ import 'package:todo_list_app/domain/enums/todos_nomenclature_enum.dart';
 import 'package:todo_list_app/presentation/pages/handle_todo_dialog.dart';
 import 'package:todo_list_app/presentation/pages/widgets/list_item.dart';
 import 'package:todo_list_app/presentation/stores/todo_store.dart';
+import 'package:todo_list_app/presentation/utils/constants.dart';
 import 'package:todo_list_app/presentation/utils/dimens.dart';
 import 'package:todo_list_app/presentation/utils/strings.dart';
 
@@ -24,8 +25,8 @@ class AllTodosPage extends StatefulWidget {
 }
 
 class _AllTodosPageState extends State<AllTodosPage> {
-  final Duration _animationDuration = const Duration(seconds: 1);
-  final Duration _applyOpacityDuration = const Duration(milliseconds: 500);
+  final Duration _animationDuration = AppConstants.APPLY_ANIMATION_DURANTION;
+  final Duration _applyOpacityDuration = AppConstants.APPLY_OPACITY_ANIMATION_DURATION;
 
   late int _idTodoAnimation = -1;
 
@@ -35,8 +36,15 @@ class _AllTodosPageState extends State<AllTodosPage> {
   }
 
   Widget _buildMessageWidget(String message) {
-    return Row(
-        children: [Expanded(child: Text(message, textAlign: TextAlign.center, style: const TextStyle(fontSize: 16)))]);
+    return Row(children: [
+      Expanded(
+        child: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 16),
+        ),
+      )
+    ]);
   }
 
   Widget _buildListItem(TodoEntity todo, BuildContext context) {
@@ -45,18 +53,23 @@ class _AllTodosPageState extends State<AllTodosPage> {
       duration: _animationDuration,
       child: TodoListItem(
           todo: todo,
-          onToggle: (value) => _applyFadeAnimation(todo.id).then((value) => widget.store
-              .updateTodo(id: todo.id, title: todo.title, isDone: !todo.isDone)
-              .then((value) => _showToast(context: context, msg: AppStrings.TODO_UPDATED_TEXT))),
-          onDelete: () async => await widget.store
-              .deleteTodoById(todo.key)
-              .then((value) => _showToast(context: context, msg: AppStrings.TODO_DELETED_TEXT)),
+          onToggle: (value) => _applyFadeAnimation(todo.id).then(
+                (value) => widget.store
+                    .updateTodo(id: todo.id, title: todo.title, isDone: !todo.isDone)
+                    .then((value) => _showToast(context: context, msg: AppStrings.TODO_UPDATED_TEXT)),
+              ),
+          onDelete: () async => await widget.store.deleteTodoById(todo.key).then(
+                (value) => _showToast(context: context, msg: AppStrings.TODO_DELETED_TEXT),
+              ),
           onEdit: () async {
-            final result = await showDialog(context: context, builder: (_) => HandleTodoDialog(todo: todo));
+            final result = await showDialog(
+              context: context,
+              builder: (_) => HandleTodoDialog(todo: todo),
+            );
             if (result != null) {
-              widget.store
-                  .updateTodo(id: todo.id, title: result, isDone: todo.isDone)
-                  .then((value) => _showToast(context: context, msg: AppStrings.TODO_UPDATED_TEXT));
+              widget.store.updateTodo(id: todo.id, title: result, isDone: todo.isDone).then(
+                    (value) => _showToast(context: context, msg: AppStrings.TODO_UPDATED_TEXT),
+                  );
             }
           }),
     );
