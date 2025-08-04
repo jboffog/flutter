@@ -12,6 +12,7 @@ import 'package:todo_list_app/presentation/pages/pending_todo.dart';
 import 'package:todo_list_app/presentation/pages/handle_todo_dialog.dart';
 import 'package:todo_list_app/presentation/stores/todo_store.dart';
 import 'package:todo_list_app/presentation/utils/colors.dart';
+import 'package:todo_list_app/presentation/utils/constants.dart';
 import 'package:todo_list_app/presentation/utils/dimens.dart';
 import 'package:todo_list_app/presentation/utils/strings.dart';
 
@@ -29,7 +30,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
   final int INDEX_TO_SHOW_INFO_BUTTON = 2;
   late int _idTodoAnimation = -1;
 
-  final Duration _applyOpacityDuration = const Duration(milliseconds: 500);
+  final Duration _applyOpacityDuration = AppConstants.APPLY_OPACITY_ANIMATION_DURATION;
 
   @override
   void initState() {
@@ -93,7 +94,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                       store
                           .addTodo(title: result)
                           .then((value) => _applyFadeAnimation(store.todoList.last.id))
-                          .then((value) => setState((() {})))
+                          // .then((value) => setState((() {})))
                           .then((value) => _showToast(AppStrings.TODO_INCLUDED_TEXT));
                     }
                   },
